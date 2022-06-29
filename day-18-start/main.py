@@ -15,16 +15,24 @@ tim = Turtle()
 
 colours = ["blue", "red", "purple", "magenta"]
 
-def draw_shape(num_sides):
-    angle = 360/ num_sides
-    for _ in range(num_sides):
-        tim.forward(100)
-        tim.right(angle)
+# def draw_shape(num_sides):
+#     angle = 360/ num_sides
+#     for _ in range(num_sides):
+#         tim.forward(100)
+#         tim.right(angle)
+#
+# for shape_side_n in range(3,11):
+#     tim.color(random.choice(colours))
+#     draw_shape(shape_side_n)
 
-for shape_side_n in range(3,11):
+directions = [0, 90, 180, 270]
+tim.pensize(15)
+tim.speed("fastest")
+
+for _ in range(200):
     tim.color(random.choice(colours))
-    draw_shape(shape_side_n)
-
+    tim.forward(30)
+    tim.setheading(random.choice(directions))
 
 
 
