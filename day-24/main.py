@@ -5,5 +5,5 @@
 
 #have to open in write since it is automatically read only when opened
 #w is write and a would be append
-with open("new_file.txt", mode="w") as file:
-    file.write("New Text.")
+with open("../../../desktop/my_file.txt", mode="w") as file:
+    file.write("I found the file and wrote this in it.")
