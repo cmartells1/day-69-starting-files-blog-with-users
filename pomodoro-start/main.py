@@ -21,6 +21,8 @@ def start_timer():
 def count_down(count):
     count_min = math.floor(count / 60)
     count_sec = count % 60
+    if count_sec < 10:
+        count_sec = f"0{count_sec}"
     #this would change the canvas it is different as you have to grab the canvas you want to change
     #and then connect to the thing you want to change inside the assigned variable
     canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
