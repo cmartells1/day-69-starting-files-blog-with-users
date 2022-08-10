@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from random import randint, choice, shuffle
 import pyperclip
+import json
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
@@ -28,18 +29,33 @@ def save():
     website = website_entry.get()
     email = email_entry.get()
     password = password_entry.get()
+    new_data = {
+        website: {
+            "email": email,
+            "password": password
+        }
+    }
 
     if len(website) == 0 or len(password) == 0:
         messagebox.showinfo("Oops", "Please enter all fields")
     else:
-        is_ok = messagebox.askokcancel(title=website, message=f"These are the details entered: \nEmail:{email}\n Password:{password}\n"
-                                                      f" Is it ok to save?")
+        # json.dump to write to file and json.load to read a file
+        try:
+            with open("./data.json",mode="r") as data_file:
+                data = json.load(data_file)
+        except FileNotFoundError:
+            with open("./data.json",mode="w") as data_file:
+                json.dump(new_data, data_file, indent=4)
+        else:
+            #updating old data - triggered only if the try block was successful
+            data.update(new_data)
 
-        if is_ok:
-            with open("./data.txt",mode="a") as data:
-                data.write(f"{website} | {email} | {password} \n")
-                website_entry.delete(0, END)
-                password_entry.delete(0, END)
+            with open("./data.json", mode="w") as data_file:
+                #writing new data over old data
+                json.dump(data, data_file, indent=4)
+        finally:
+            website_entry.delete(0, END)
+            password_entry.delete(0, END)
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Password Manager")
