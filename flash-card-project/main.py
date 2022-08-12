@@ -4,10 +4,16 @@ import pandas
 
 
 BACKGROUND_COLOR = "#B1DDC6"
+current_card = {}
+word_list = {}
 
-word_data = pandas.read_csv("data/french_words.csv")
-word_list = word_data.to_dict(orient="records")
-current_card= {}
+try:
+    word_data = pandas.read_csv("data/words_to_learn.csv")
+except FileNotFoundError:
+    original_data = pandas.read_csv("data/french_words.csv")
+    word_list = original_data.to_dict(orient="records")
+else:
+    word_list = word_data.to_dict(orient="records")
 
 
 def next_card():
@@ -23,6 +29,13 @@ def switch_card():
     canvas.itemconfig(canvas_image, image=flash_card_image_eng)
     canvas.itemconfig(card_title, text="English", fill="white")
     canvas.itemconfig(card_word, text=current_card['English'], fill="white")
+
+def learned_words():
+    word_list.remove(current_card)
+    data = pandas.DataFrame(word_list)
+    data.to_csv("data/words_to_learn.csv", index=False)
+    next_card()
+
 
 
 
@@ -45,7 +58,7 @@ x_button = Button(image=x_image, highlightthickness=0, command=next_card)
 x_button.grid(column=0, row=1)
 
 check_image = PhotoImage(file="images/right.png")
-check_button = Button(image=check_image, highlightthickness=0, command=next_card)
+check_button = Button(image=check_image, highlightthickness=0, command=learned_words)
 check_button.grid(column=1, row=1)
 
 next_card()
