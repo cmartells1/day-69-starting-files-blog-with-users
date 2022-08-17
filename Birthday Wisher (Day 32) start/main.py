@@ -11,5 +11,12 @@
 #                         msg="Subject:Hello\n\nThis is the body of my email"
 #                         )
 
-import datetime
+import datetime as dt
 
+now = dt.datetime.now()
+year = now.year
+month = now.month
+day_of_week = now.weekday()
+print(year)
+
+date_of_birth = dt.datetime(year=1985, month=10, day=3)
