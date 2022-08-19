@@ -9,11 +9,14 @@ word_list = {}
 
 try:
     word_data = pandas.read_csv("data/words_to_learn.csv")
+
 except FileNotFoundError:
     original_data = pandas.read_csv("data/french_words.csv")
     word_list = original_data.to_dict(orient="records")
+    print(word_list)
 else:
     word_list = word_data.to_dict(orient="records")
+    print(word_list)
 
 
 def next_card():
