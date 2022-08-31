@@ -32,14 +32,28 @@ headers = {
 # response = requests.post(url=graph_endpoint, json=graph_params, headers=headers)
 # print(response.text)
 
-post_pixel_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
+# post_pixel_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
+#
+# today = datetime(year=2022, month=8, day= 30)
 
-today = datetime(year=2022, month=8, day= 30)
+# post_pixel_params = {
+#     "date": today.strftime("%Y%m%d"),
+#     "quantity": "50"
+# }
+#
+# response = requests.post(url=post_pixel_endpoint, json=post_pixel_params, headers=headers)
+# print(response.text)
 
-post_pixel_params = {
-    "date": today.strftime("%Y%m%d"),
-    "quantity": "50"
+today = datetime(year=2022, month=8, day= 30).strftime("%Y%m%d")
+
+update_pixel_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}/{today}"
+update_pixel_data = {
+    "quantity": "13.3"
 }
 
-response = requests.post(url=post_pixel_endpoint, json=post_pixel_params, headers=headers)
+# response = requests.put(url=update_pixel_endpoint, json=update_pixel_data, headers=headers)
+# print(response.text)
+
+delete_pixel_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}/{today}"
+response = requests.delete(url=delete_pixel_endpoint, headers=headers)
 print(response.text)
