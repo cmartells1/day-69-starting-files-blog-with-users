@@ -1,5 +1,6 @@
 import requests
 import datetime
+from twilio.rest import Client
 
 
 STOCK = "TSLA"
@@ -7,6 +8,8 @@ COMPANY_NAME = "Tesla Inc"
 
 STOCK_API_KEY = "391M2B634DZFJFEA"
 STOCK_API_ENDPOINT = "https://www.alphavantage.co/query"
+TWILIO_SID = "ACdcf18e261639dc91a6da0288ee00e9d2"
+TWILIO_TOKEN = "4772b933e4461387010bd3c8a1974854"
 
 stock_parameters ={
     "function":"TIME_SERIES_DAILY",
@@ -23,11 +26,18 @@ yesterday_closing = float(stock_data_list[0]["4. close"])
 print(yesterday_closing)
 day_before_yesterday_closing = float(stock_data_list[1]["4. close"])
 print(day_before_yesterday_closing)
-difference = abs(yesterday_closing - day_before_yesterday_closing)
-difference_percentage = (difference / yesterday_closing ) * 100
+difference = float(yesterday_closing) - float(day_before_yesterday_closing)
+up_down = None
+
+if difference > 0:
+    up_down = "↑"
+else:
+    up_down = "↓"
+
+difference_percentage = round((difference / yesterday_closing ) * 100)
 
 yesterday = datetime.datetime.now().date() - datetime.timedelta(days=1)
-if difference_percentage > 5:
+if abs(difference_percentage) > 1:
     news_api = "a55f8a892fd24762961825115959ac29"
     news_api_endpoint = "https://newsapi.org/v2/everything"
     news_parameters = {
@@ -37,13 +47,21 @@ if difference_percentage > 5:
     }
     news_response = requests.get(url=news_api_endpoint, params=news_parameters)
     news_data = news_response.json()["articles"]
-    print(news_data[0])
-## STEP 2: Use https://newsapi.org
-# Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
+    three_articles = news_data[:3]
+
+    formatted_articles = [f"{STOCK}: {up_down}{difference_percentage}% \nHeadline: {article['title']}.\nBrief: {article['description']}" for article in three_articles]
+
+
 
 ## STEP 3: Use https://www.twilio.com
-# Send a seperate message with the percentage change and each article's title and description to your phone number. 
-
+# Send a seperate message with the percentage change and each article's title and description to your phone number.
+    for article in formatted_articles:
+        client = Client(TWILIO_SID, TWILIO_TOKEN)
+        message = client.messages.create(
+            body=article,
+            from_='+18302713512',
+            to='+1 780 288 2401'
+        )
 
 #Optional: Format the SMS message like this: 
 """
