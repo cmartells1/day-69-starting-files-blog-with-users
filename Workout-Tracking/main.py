@@ -1,8 +1,11 @@
 import requests
 from datetime import datetime
+import os
 
-APP_ID ="e0a3d083"
-API_KEY = "86b2af44ca159c559e598dfc127c504c"
+APP_ID = os.environ["APP_ID"]
+API_KEY = os.environ["API_KEY"]
+USERNAME = os.environ["SHEET_USERNAME"]
+PASSWORD = os.environ["PASSWORD"]
 
 GENDER = "male"
 WEIGHT = 181.43
@@ -35,7 +38,7 @@ today = datetime.now().strftime("%d/%m/%Y")
 now_time = datetime.now().strftime("%X")
 
 
-sheety_endpoint = "https://api.sheety.co/7095f78aba4405d785c4613307c47b46/chris'sWorkouts/workouts"
+sheety_endpoint = os.environ["SHEET_ENDPOINT"]
 
 for exercise in result['exercises']:
     sheety_entries = {
@@ -49,7 +52,14 @@ for exercise in result['exercises']:
         }
     }
 
-    sheety_response = requests.post(url=sheety_endpoint, json=sheety_entries)
+    sheety_response = requests.post(
+        url=sheety_endpoint,
+        json=sheety_entries,
+        auth= (
+            USERNAME,
+            PASSWORD
+        )
+    )
 
     print(sheety_response.text)
 
