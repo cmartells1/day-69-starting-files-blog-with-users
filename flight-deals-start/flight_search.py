@@ -45,7 +45,12 @@ class FlightSearch:
         }
 
         response = requests.get(url=f"{TEQUILA_ENDPOINT}/v2/search", headers= header, params=query)
-        data = response.json()["data"][0]
+        try:
+            data = response.json()["data"][0]
+        except IndexError:
+            print(f"There was no flights found for {destination_code}")
+            return None
+
         flight_data = FlightData(
             price=data["price"],
             origin_city=data["route"][0]["cityFrom"],
