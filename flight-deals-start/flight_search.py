@@ -1,5 +1,6 @@
 import requests
 from flight_data import FlightData
+from pprint import pprint
 
 
 TEQUILA_API_KEY = "tDX4BmzE8R0JsIe7IMNyoFRZFr7GA7Ko"
@@ -44,23 +45,37 @@ class FlightSearch:
             "curr": "CAD"
         }
 
-        response = requests.get(url=f"{TEQUILA_ENDPOINT}/v2/search", headers= header, params=query)
+        response = requests.get(url=f"{TEQUILA_ENDPOINT}/v2/search", headers=header, params=query)
         try:
             data = response.json()["data"][0]
         except IndexError:
-            print(f"There was no flights found for {destination_code}")
-            return None
+            query["max_stopovers"] = 2
+            response = requests.get(url=f"{TEQUILA_ENDPOINT}/v2/search", headers=header, params=query)
+            data = response.json()["data"][0]
+            pprint(data)
+            flight_data = FlightData(
+                price=data["price"],
+                origin_city=data["route"][0]["cityFrom"],
+                origin_airport=data["route"][0]["flyFrom"],
+                destination_city=data["route"][0]["cityTo"],
+                destination_airport=data["route"][0]["flyTo"],
+                departure_date=data["route"][0]["local_departure"].split("T")[0],
+                return_date=data["route"][1]["local_departure"].split("T")[0],
 
-        flight_data = FlightData(
-            price=data["price"],
-            origin_city=data["route"][0]["cityFrom"],
-            origin_airport=data["route"][0]["flyFrom"],
-            destination_city=data["route"][0]["cityTo"],
-            destination_airport=data["route"][0]["flyTo"],
-            departure_date=data["route"][0]["local_departure"].split("T")[0],
-            return_date=data["route"][1]["local_departure"].split("T")[0]
-        )
+            )
 
-        print(f"{flight_data.destination_city} : ${flight_data.price}")
-        return flight_data
+        else:
+            pprint(data)
+            flight_data = FlightData(
+                price=data["price"],
+                origin_city=data["route"][0]["cityFrom"],
+                origin_airport=data["route"][0]["flyFrom"],
+                destination_city=data["route"][0]["cityTo"],
+                destination_airport=data["route"][0]["flyTo"],
+                departure_date=data["route"][0]["local_departure"].split("T")[0],
+                return_date=data["route"][1]["local_departure"].split("T")[0]
+            )
+
+            print(f"{flight_data.destination_city} : ${flight_data.price}")
+            return flight_data
 

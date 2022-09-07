@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c4209ba9-b219-48c4-8d7a-061949713355" name="Changes" comment="" />
+    <list default="true" id="c4209ba9-b219-48c4-8d7a-061949713355" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../flight-deals-start/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../flight-deals-start/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +25,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/Documents/GitHub/100_days_of_code_python_tutorial/stock-news-extrahard-start"
+    "last_opened_file_path": "C:/Users/Chris/PycharmProjects/100_days_of_code_python_tutorial/Workout-Tracking"
   }
 }]]></component>
   <component name="RunManager">

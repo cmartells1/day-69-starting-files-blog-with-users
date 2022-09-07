@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1624ca0a-3de8-44b9-92e6-838f7c6aecac" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Workout-Tracking/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Workout-Tracking/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flight_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/flight_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flight_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/flight_search.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/notification_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock-news-extrahard-start/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock-news-extrahard-start/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
