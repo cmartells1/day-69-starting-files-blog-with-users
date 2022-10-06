@@ -2,31 +2,56 @@ body{
   margin: 0;
   /* center everything inside that doesn't have a width */
   text-align: center;
-  font-family: verdana, sans-serif;
+  font-family: 'Merriweather', serif;
 }
 
-h1{
-  margin-top: 0
 
+h1{
+  margin: 50px auto 0 auto;
+  font-family: 'Sacramento', cursive;
+  font-size:5.625rem; /*16px = 100% = 1em/1rem */
+  color: #66BFBF;
+}
+
+h2{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  color: #66BFBF;
+  font-weight: normal;
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: #11999E;
+}
+a {
+  color: #11999E;
 }
 
 .top-container  {
-  background-color: #66bfbf;
+  background-color: #e4f9f5;
   position: relative;
   padding-top: 100px;
 }
 
-.mid-container{
-  height: 200px;
-  width: 200px;
-  background-color: pink;
+.middle-container{
 }
 
 .bottom-container{
-  height: 200px;
-  width: 200px;
-  background-color: green;
-  ;
+
+}
+
+.skill-row {
+  width: 50%;
+  margin: 100px auto;
+  text-align: left;
+  line-height: 2;
+}
+
+.profile_pic{
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
 }
 
 .pro {
@@ -43,4 +68,16 @@ h1{
   position: absolute;
   left: 300px;
   bottom: 300px;
+}
+
+.code-img {
+  width: 25%;
+  float: left;
+  margin-right: 30px;
+
+}
+.football-img{
+  width:25%;
+  float: right;
+  margin-left: 30px;
 }
