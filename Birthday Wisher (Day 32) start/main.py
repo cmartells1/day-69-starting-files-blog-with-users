@@ -24,7 +24,7 @@ import smtplib
 # date_of_birth = dt.datetime(year=1985, month=10, day=3)
 
 MY_EMAIL = "martells.test@gmail.com"
-PASSWORD = "kbrjybvetpgzyhnh"
+PASSWORD = "bigtasstic2"
 
 now = dt.datetime.now()
 today = now.weekday()
