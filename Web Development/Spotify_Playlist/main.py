@@ -13,7 +13,7 @@ year = entered_date.split('-')[0]
 print(year)
 response = requests.get(f"{URL}/{entered_date}")
 billboard_web_page = response.text
-
+print(billboard_web_page)
 soup = BeautifulSoup(billboard_web_page, "html.parser")
 song_name_h3 = soup.findAll(name='h3', class_='a-no-trucate')
 song_list = [song.getText().strip() for song in song_name_h3]
