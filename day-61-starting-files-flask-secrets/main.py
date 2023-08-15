@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, length
+from flask_bootstrap import Bootstrap5
 '''
 Red underlines? Install the required packages first: 
 Open the Terminal in PyCharm (bottom left). 
@@ -22,6 +23,8 @@ class MyForm(FlaskForm):
 
 app = Flask(__name__)
 app.secret_key = "wang"
+
+bootstrap = Bootstrap5(app)
 
 @app.route("/")
 def home():
