@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="179f5bc3-a477-4507-b23e-5fd2ae3a3b93" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day-63-starting-files-library-project/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../day-63-starting-files-library-project/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day-63-starting-files-library-project/templates/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/../day-63-starting-files-library-project/templates/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../day-63-starting-files-library-project/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../day-63-starting-files-library-project/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sqllite/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sqllite/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sqllite/books-collection.db" beforeDir="false" afterPath="$PROJECT_DIR$/../sqllite/books-collection.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sqllite/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../sqllite/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
