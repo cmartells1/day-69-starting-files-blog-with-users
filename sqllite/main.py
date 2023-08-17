@@ -31,19 +31,21 @@ class Book(db.Model):
 with app.app_context():
     db.create_all()
 
-with app.app_context():
-    book = Book(id=1, title="Harry Potter", author="J.K. Rowling", rating=9.3)
-    db.session.add(book)
-    db.session.commit()
+#create a record
+# with app.app_context():
+#     book = Book(id=1, title="Harry Potter", author="J.K. Rowling", rating=9.3)
+#     db.session.add(book)
+#     db.session.commit()
 
 #Read all records
 with app.app_context():
     result = db.session.execute(db.select(Book).order_by(Book.title))
     all_books = result.scalars()
+    print (all_books)
 #one record
 with app.app_context():
     book = db.session.execute(db.select(Book).where(Book.title == "Harry Potter")).scalar()
-
+    print(book)
 #update a record  by query
 with app.app_context():
     book_to_update = db.session.execute(db.select(Book).where(Book.title == "Harry Potter")).scalar()
