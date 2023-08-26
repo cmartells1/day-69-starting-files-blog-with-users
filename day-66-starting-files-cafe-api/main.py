@@ -127,6 +127,19 @@ def update_coffee_price(cafe_id):
     else:
         return jsonify(error={"Not Found": "Sorry a cafe with that id was not found in the database."}), 404
 ## HTTP DELETE - Delete Record
+@app.route("/report-closed/<cafe_id>", methods=["DELETE"])
+def delete_cafe(cafe_id):
+    api_key = request.args.get("api-key")
+    if api_key == 'HotSauce':
+        cafe_to_delete = db.session.get(Cafe, cafe_id)
+        if cafe_to_delete:
+            db.session.delete(cafe_to_delete)
+            db.session.commit()
+            return jsonify(response={"success": "Successfully deleted the cafe."})
+        else:
+            return jsonify(error={"Not Found": "Sorry a cafe with that id was not found in the database."}), 404
+    else:
+        return jsonify({"error": "Sorry, that is not allowed. Make sure you have the correct api_key"}), 404
 
 
 if __name__ == '__main__':
