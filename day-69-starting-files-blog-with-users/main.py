@@ -42,15 +42,17 @@ Bootstrap5(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-@login_manager.user_loader
-def load_user(user_id):
-    return db.get_or_404(User, user_id)
+
 
 # CONNECT TO DB
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 db = SQLAlchemy()
 db.init_app(app)
 
+
+@login_manager.user_loader
+def load_user(user_id):
+    return db.session.execute(db.select(User).where(User.id == user_id)).scalar()
 
 # CONFIGURE TABLES
 class BlogPost(db.Model):
@@ -60,7 +62,8 @@ class BlogPost(db.Model):
     subtitle = db.Column(db.String(250), nullable=False)
     date = db.Column(db.String(250), nullable=False)
     body = db.Column(db.Text, nullable=False)
-    author = db.Column(db.String(250), nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    author = relationship("User", back_populates="posts")
     img_url = db.Column(db.String(250), nullable=False)
 
 
@@ -71,6 +74,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(250), unique=True, nullable=False)
     password = db.Column(db.String(250), nullable=False)
     name = db.Column(db.String(250), nullable=False)
+    posts = relationship("BlogPost", back_populates="author")
 
 with app.app_context():
     db.create_all()
@@ -130,7 +134,9 @@ def logout():
 def get_all_posts():
     result = db.session.execute(db.select(BlogPost))
     posts = result.scalars().all()
-    return render_template("index.html", all_posts=posts,current_user=current_user)
+    return render_template("index.html",
+                           all_posts=posts,
+                           current_user=current_user)
 
 
 # TODO: Allow logged-in users to comment on posts
@@ -204,4 +210,4 @@ def contact():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5002)
+    app.run(debug=True, port=5000)
